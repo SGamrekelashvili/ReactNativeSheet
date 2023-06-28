@@ -29,7 +29,6 @@ const App = () => {
       value: 0
     }
   }
-
   useEffect(() => {
     (async () => {
       const data = await getData()
@@ -111,6 +110,11 @@ const App = () => {
           :
           <View style={styles.innerContainer}>
             <FlatList
+              onRefresh={async () => {
+                const data = await getData()
+                setData(data.values)
+              }}
+              refreshing={false}
               data={data}
               ListHeaderComponent={HeaderComponent}
               ListFooterComponent={FooterComponent}
